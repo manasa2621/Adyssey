@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useState } from 'react'
 import Image from 'next/image'
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
@@ -6,6 +6,8 @@ import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
 import { Link as ScrollLink } from 'react-scroll'
 import { StyledButton } from '@/components/styled-button'
+import Modal from '@mui/material/Modal'
+import SignUpForm from '../../components/navigation/signUpForm'
 
 interface Exp {
   label: string
@@ -47,6 +49,11 @@ const ExpItem: FC<ExpItemProps> = ({ item }) => {
 }
 
 const HomeHero: FC = () => {
+  const [open, setOpen] = useState(false)
+
+  const handleOpen = () => setOpen(true)
+  const handleClose = () => setOpen(false)
+
   return (
     <Box id="hero" sx={{ backgroundColor: 'background.paper', position: 'relative', pt: 4, pb: { xs: 8, md: 10 } }}>
       <Container maxWidth="lg">
@@ -142,9 +149,32 @@ const HomeHero: FC = () => {
               </Box>
               <Box sx={{ '& button': { mr: 2 } }}>
                 <ScrollLink to="popular-course" spy={true} smooth={true} offset={0} duration={350}>
-                  <StyledButton color="primary" size="large" variant="contained">
+                  <StyledButton onClick={handleOpen} color="primary" size="large" variant="contained">
                     Get Started
                   </StyledButton>
+                  <Modal
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="sign-up-modal"
+                    aria-describedby="sign-up-form"
+                  >
+                    <Box
+                      sx={{
+                        position: 'absolute',
+                        top: '50%',
+                        left: '50%',
+                        transform: 'translate(-50%, -50%)',
+                        width: '90%',
+                        maxWidth: 400,
+                        bgcolor: 'background.paper',
+                        border: '2px solid #000',
+                        boxShadow: 24,
+                        p: 4,
+                      }}
+                    >
+                      <SignUpForm />
+                    </Box>
+                  </Modal>
                 </ScrollLink>
               </Box>
             </Box>
