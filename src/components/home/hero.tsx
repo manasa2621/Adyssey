@@ -13,24 +13,12 @@ interface Exp {
   label: string
   value: string
 }
+
 interface ExpItemProps {
   item: Exp
 }
 
-const exps: Array<Exp> = [
-  /*   {
-    label: 'Students',
-    value: '10K+',
-  },
-  {
-    label: 'Quality Course',
-    value: '20+',
-  },
-  {
-    label: 'Experience Mentors',
-    value: '10+',
-  }, */
-]
+const exps: Array<Exp> = []
 
 const ExpItem: FC<ExpItemProps> = ({ item }) => {
   const { value, label } = item
@@ -51,8 +39,8 @@ const ExpItem: FC<ExpItemProps> = ({ item }) => {
 const HomeHero: FC = () => {
   const [open, setOpen] = useState(false)
 
-  const handleOpen = () => setOpen(true)
-  const handleClose = () => setOpen(false)
+  const handleOpen = (): void => setOpen(true)
+  const handleClose = (): void => setOpen(false)
 
   return (
     <Box id="hero" sx={{ backgroundColor: 'background.paper', position: 'relative', pt: 4, pb: { xs: 8, md: 10 } }}>
@@ -143,7 +131,7 @@ const HomeHero: FC = () => {
               <Box sx={{ mb: 4, width: { xs: '100%', md: '70%' } }}>
                 <Typography sx={{ color: 'text.secondary', lineHeight: 1.6 }}>
                   {
-                    "Adyssey is India's first and leading tech enabled truck side media company. use our fleet tracker to improve brand recognition across all spaces and drive traffic to your brand."
+                    "Adyssey is India's first and leading tech-enabled truck side media company. Use our fleet tracker to improve brand recognition across all spaces and drive traffic to your brand."
                   }
                 </Typography>
               </Box>
